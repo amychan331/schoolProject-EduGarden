@@ -1,0 +1,93 @@
+<?php 
+// Create User model:
+// Create a working user/access model that authenticates users of different types.
+// Showing what rights a user has so when client login as different users, client can tell they're different.
+
+// Ensure source code is readable:
+
+// Ensure source code is readable:
+if (isset($_GET['source'])) {
+    highlight_file($_SERVER['SCRIPT_FILENAME']);
+	  exit;
+}
+// Get the session handler;
+require('sessionClass.php');
+
+// Begin Class
+class User {
+	
+    public function __construct() {
+        $this->userName = $_POST['userName'];
+        $this->password = $_POST['passWd'];
+    }
+
+    private function validation() {
+        // check to make sure client is not just revisiting page as login user
+        if (isset($_SESSION) && empty($_POST)) {
+            echo "Welcome back, " . $_SESSION["data"] . ".";
+        } 
+        
+        // now if client is logging in, begin validation, starting with input
+        if (isset($_POST["login"])) {
+            if (empty($_POST["userName"]) || empty($_POST["passWd"])) {
+                echo "<span class = 'err'>Please fill out both fields.</span>";
+            } else {
+                $session = new Session();
+            }
+        }
+    } // Ends function validation().
+
+    private function validPass() {
+
+    } // Ends function validPass().
+
+} //Ends class User.
+?>
+
+<html>
+<head>
+      <title>Log-In Page</title>
+      <style>
+        fieldset {
+            padding: 5px; 
+            width: 50%;
+            margin: auto;
+
+        }
+        legend {
+            font-weight: bold;
+        }
+          .logMsg {
+            color: gray;
+            font-style: italic;
+            margin: 5px 0 5px 0;
+            display: block;
+          }
+          .err{
+               color: red;
+            margin: 5px 0 5px 0;
+          }
+          input {
+              margin-top: 5px;
+              margin-right: 5px;
+          }
+      </style>
+      <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<head>
+<body>
+    <script>
+    $(document).ready(function() {
+          $("span").insertAfter("input[name=login]");
+    })
+      </script>
+    <br />
+    <form action = <?php echo htmlspecialchars($_SERVER["REQUEST_URI"]); ?> method="post">
+        <fieldset>
+            <legend>Sign-In Form</legend>
+            Name: <input type="text" name="userName" required/><br />
+            Password: <input type="password" name="passWd" required/><br />
+            <input type="submit" name="login" value="Login" />
+        </fieldset>
+    </form>
+</body>
+</html>
