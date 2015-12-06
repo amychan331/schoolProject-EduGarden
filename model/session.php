@@ -34,7 +34,7 @@ class Session {
 	function open() {
 		require_once('/students/achan123/cs130b/private/dbvar.inc');
 		$this->db = new mysqli($dbhost, $dbuser, $dbpass, $dbdatabase) or die("Database not connecting.");
-		//unset($dbuser, $dbpass);
+		unset($dbuser, $dbpass);
 		return true;
 	}
 
