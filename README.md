@@ -12,5 +12,5 @@ Some of the additional goals I have is:
 * Find a way to deal with tax and shipping cost, which was one of the major frustration I had with my previous gardening shop experience. 
 * Make it friendly for both desktop and mobile device.
 * Avoid making a design disaster. Just cause it is a class project does not means I should throw all my design lessons to the backburner.
-* Incorporate some web security techniques, particularly the ones I have been reading at OSWAP.
+* Incorporate some web security techniques, particularly the ones I have been reading at OSWASP.
 * If possibly, add in features that make it accessibility-friendly.
