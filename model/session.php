@@ -4,7 +4,6 @@ if (isset($_GET['source'])) {
 	highlight_file($_SERVER['SCRIPT_FILENAME']);
 	exit;
 }
-
 // A Session class:
 class Session {
 	public $db;
@@ -14,7 +13,6 @@ class Session {
 	private $max;
 	private $current;
 	private $emptyHistory;
-
 	public function __construct() {
 		session_set_save_handler(
 			array($this, 'open'), 
@@ -30,19 +28,16 @@ class Session {
 		session_set_cookie_params($this->maxlifetime);
 		session_start();
 	}
-
 	function open() {
 		require_once('/students/achan123/cs130b/private/dbvar.inc');
 		$this->db = new mysqli($dbhost, $dbuser, $dbpass, $dbdatabase) or die("Database not connecting.");
-		//unset($dbuser, $dbpass);
+		unset($dbuser, $dbpass);
 		return true;
 	}
-
 	function close() {
 		$this->db->close();
 		return true;
 	}
-
 	function read($sid) {
 		$this->result = $this->db->prepare("SELECT data FROM session_holder WHERE id = ?");
 		$this->result->bind_param("s", $sid);
@@ -54,7 +49,6 @@ class Session {
 		}
 		return true;
 	}
-
 	function write($sid, $data) {
 		if ($data) {	
 			// unserialize $_SESSION to get name datas, then reserialized it back.
@@ -74,9 +68,7 @@ class Session {
 			$this->result->close();
 			return true;
 		}
-
 	}	
-
 	function destroy($sid) {
 		$this->emptyHistory = $this->db->query("SELECT * FROM session_holder WHERE id = '${sid}'")->num_rows;
 		if ($this->emptyHistory === 0) {
@@ -90,7 +82,6 @@ class Session {
 		}
 		return true;
 	}
-
 	function gc($max) {
 		$old = time() - $max;
 		$this->result = $this->db->prepare("DELETE FROM session_holder WHERE time < ?");
