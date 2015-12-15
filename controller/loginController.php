@@ -7,8 +7,8 @@
 
     // Check to make sure user haven't already login.
     if (! empty($session->name) && empty($_POST['logout'])){
-        $boxMsg[] = "You are already logged in as " . $session->name . ". <br />
-        Please log out first if want to log in as different user.<br />
+        $boxMsg[] = "Welcome! You are login as " . $session->name . ". <br />
+        Please log out first if you want to log in as different user.<br />
         <form action = " . htmlspecialchars($_SERVER['REQUEST_URI']) . " method='post'>
         <input type='submit' name='logout' class='sub-bn' value='Logout' /></form>";
     } elseif (isset($_POST['login'])) {

@@ -16,11 +16,11 @@ class Inventory extends userControl {
         $this->session = $session;
     }
 
-    protected function input($item, $quantity) {
-        $this->pid = $item;
-        $this->qty = $quantity;
+    public function input($item, $quantity) {
+        $this->pid = intval($item);
+        $this->qty = intval($quantity);
 
-        $this->product = $this->session->db->prepare("SELECT pname, price FROM products WHERE pid = ?");
+        $this->products = $this->session->db->prepare("SELECT productName, price FROM products WHERE productId = ?");
         $this->products->bind_param("i", $this->pid);
         $this->products->execute();
         $this->products->store_result();
@@ -45,17 +45,16 @@ class Inventory extends userControl {
         return $this->rows;
     }
 
-    protected function add() {
-        $this->inventory = $this->session->db->prepare("INSERT INTO inventory VALUES (?, ?) 
-            ON DUPLICATE KEY UPDATE available += ?");
-        $this->inventory->bind_param("iii", $this->pid, $this->qty, $this->qty);
-        $this->cart->execute();
+    public function add() {
+        $this->inventory = $this->session->db->prepare("UPDATE inventory SET available = available + ? WHERE productId = ?");
+        $this->inventory->bind_param("ii", $this->qty, $this->pid);
+        $this->inventory->execute();
     }
 
-    protected function remove() {
-        $this->inventory = $this->session->db->prepare("DELETE FROM inventory WHERE $productID = ?");
-        $this->inventory->bind_param("i", $this->pid);
-        $this->cart->execute();
+    public function delete() {
+        $this->inventory = $this->session->db->prepare("UPDATE inventory SET available = available - ? WHERE productId = ?");
+        $this->inventory->bind_param("ii", $this->qty, $this->pid);
+        $this->inventory->execute();
     }
 
 }

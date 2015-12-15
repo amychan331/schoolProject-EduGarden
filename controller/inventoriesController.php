@@ -12,16 +12,33 @@
         $sn = $session->name;
         $user->logged($sn);
 
-        // Display inventory panel.
+        // Display inventory panel
         require_once('model/inventory.php');
-        require_once('view/inventory.php');
         $inventory = new Inventory($session);
+        require_once('view/inventory.php');
         $inventoryPanel = new inventoryView($inventory);
         $inventoryPanel->output();
         $inventoryPanel->addBn();
         $inventoryPanel->delBn();
-//        $inventoryPanel->withButtons();
+
+        // Check for inventory panel submissions
+        if (isset($_POST['addInventory'])) {
+            if (! $_POST['enterQty']) {
+                $boxMsg[] = "Please enter an amount first.";
+            } else {
+                $inventory->input($_POST['enterPid'], $_POST['enterQty']);
+                $inventory->add();
+            }
+        }
+        if (isset($_POST['delInventory'])) {
+            if (! $_POST['enterQty']) {
+                $boxMsg[] = "Please enter an amount first.";
+            } else {
+                $inventory->input($_POST['enterPid'], $_POST['enterQty']);
+                $inventory->delete();
+            }
+        }
     } else {
-        $boxMsg[] = "Only administrative users may access the inventories page.";
+        $boxMsg[] = "Accessible only by Admins. Please login first.";
     }
 ?>

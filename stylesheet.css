@@ -115,6 +115,24 @@ input.sub-bn {
     font-size: 1.0em;
     text-shadow: .3px .3px #04B45F;
 }
+.inputForms{
+    margin: 0 5px;
+    padding: 0 5px;
+}
+.cartQtyBn {
+    border: 2px solid grey;
+    border-radius: 2px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1); 
+}
+i {
+    background-color: #ffffff;
+    margin: 3px 0 1px 0;
+}
+#submitQty {
+    float: right;
+}
+
 /* ***** TABLES ***** */
 table {
     color: green;

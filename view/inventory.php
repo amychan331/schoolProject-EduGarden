@@ -26,17 +26,19 @@ class inventoryView {
     }
 
     public function addBn() {
-        echo "<form action = " . htmlspecialchars($_SERVER['REQUEST_URI']) . " method='post' class='inputForms' >
-                <p>Enter product id: <input type='text' id='enterPid'></p>
-                <p>Enter the amount of new inventory. If none, enter 0: <input type='text' id='enterQty'>
+        echo "<form action = " . htmlspecialchars($_SERVER['PHP_SELF']) . " method='post' class='inputForms' >
+                <p><span>SKU: <input type='text' id='enterPid' name='enterPid'></span>
+                <span>Amount of new inventory: <input type='text' id='enterQty' name='enterQty'></span>
+                <input type='hidden' name='sumbitted' value='1' />
                 <input type='submit' name='addInventory' class='qty-bn' value='Add Inventory' /></p>
             </form>";
     }
 
     public function delBn() {
         echo "<form action = " . htmlspecialchars($_SERVER['REQUEST_URI']) . " method='post' class='inputForms' >
-                <p>Enter product id: <input type='text' id='enterPid'></p>
-                <p>Enter the amount of new inventory. If none, enter 0: <input type='text' id='enterQty'>
+                <p><span>SKU: <input type='text' id='enterPid' name='enterPid'><span>
+                <span>Amount of removed inventory: <input type='text' id='enterQty' name='enterQty'></span>
+                <input type='hidden' name='sumbitted' value='1' />
                 <input type='submit' name='delInventory' class='qty-bn' value='Delete Inventory' /></p>
             </form>";
     }

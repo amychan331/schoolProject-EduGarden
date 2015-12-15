@@ -13,6 +13,6 @@
 		abstract protected function input($item, $quantity);
 		abstract public function display();
 		abstract protected function add();
-		abstract protected function remove();
+		abstract protected function delete();
 	}
 ?>

@@ -10,7 +10,12 @@ class Cart extends userControl {
     private $session;
     private $user;
     private $cartStatus;
+    private $products;
+    private $oldCart;
     private $cart;
+    private $inventory;
+    public $old;
+    private $diff;
     private $cid;
     private $pid;
     private $qty;
@@ -40,11 +45,11 @@ class Cart extends userControl {
         return $this->cid;
     }
 
-    protected function input($item, $quantity) {
-        $this->pid = $item;
-        $this->qty = $quantity;
+    public function input($item, $quantity) {
+        $this->pid = intval($item);
+        $this->qty = intval($quantity);
 
-        $this->products = $this->session->db->prepare("SELECT pname, price FROM products WHERE pid = ?");
+        $this->products = $this->session->db->prepare("SELECT productName, price FROM products WHERE productId = ?");
         $this->products->bind_param("i", $this->pid);
         $this->products->execute();
         $this->products->store_result();
@@ -70,22 +75,50 @@ class Cart extends userControl {
         return $this->rows;
     }
 
-    protected function add() {
-        $this->cart = $this->session->db->prepare("INSERT INTO carts WHERE cartId = ?");
-        $this->cart->bind_param("iii", $this->cid, $this->pid, $this->qty);
-        $this->cart->execute();
+    public function add() {
         //add to inventory holds, but subtract the corresponding available.
-        $this->inventoryChange = $this->session->db->prepare("UPDATE inventory SET available = available - ?, hold = hold + ? WHERE productId = ?");
-        $this->cart->bind_param("iii", $this->qty, $this->qty, $this->pid);
+        $this->inventory = $this->session->db->prepare("UPDATE inventory SET available = available - ?, hold = hold + ? WHERE productId = ?");
+        $this->inventory->bind_param("iii", $this->diff, $this->diff, $this->pid);
+        if ($this->inventory->execute()) {
+            $this->cart = $this->session->db->prepare("UPDATE carts SET quantity = ? WHERE cartId = ? AND productId =?");
+            $this->cart->bind_param("iii", $this->qty, $this->cid, $this->pid);
+            $this->cart->execute();
+            if ($this->diff > 0) {
+                return "You added "  . $this->diff . " of item with SKU " . $this->pid . " in your cart.";
+            } else {
+                return "You reduce "  . abs($this->diff) . " of item with SKU " . $this->pid . " in your cart.";
+            }
+        } else {
+            return "Unable to change quantity of item with SKU " . $this->pid . ". <br /> Either you have requested a negative amount of hold or the item is out.";
+        }
 
     }
 
-    protected function remove() {
-        $this->cart = $this->session->db->prepare("DELETE FROM carts WHERE cartId = ?");
-        $this->cart->bind_param("iii", $this->cid, $this->pid, $this->qty);
+    public function delete() {
+        $this->inventory = $this->session->db->prepare("UPDATE inventory SET available = available + ?, hold = hold - ? WHERE productId = ?");
+        $this->inventory->bind_param("iii", $this->oldQty, $this->oldQty, $this->pid);
+        $this->inventory->execute();
+        $this->cart = $this->session->db->prepare("DELETE FROM carts WHERE cartId = ? AND productId =?");
+        $this->cart->bind_param("iii", $this->cid, $this->pid);
         $this->cart->execute();
-        $this->inventoryChange = $this->session->db->prepare("UPDATE inventory SET available = available + ?, hold = hold - ? WHERE productId = ?");
-        $this->cart->bind_param("iii", $this->qty, $this->qty, $this->pid);
+        return "You removed item with SKU " . $this->pid . " from your cart.";
+    }
+
+    public function getDifferences() {
+        $this->oldCart = $this->session->db->prepare("SELECT quantity FROM carts WHERE productId = ? AND cartId = ?");
+        $this->oldCart->bind_param("ii", $this->pid, $this->cid);
+        $this->oldCart->execute();
+        $this->oldCart->bind_result($this->old);
+        $this->oldCart->fetch();
+        $this->oldCart->close();
+        
+        $this->diff = $this->qty - $this->old;
+        if ($this->diff !== 0) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+
     }
 }
 ?>

@@ -9,6 +9,11 @@
     require_once('model/session.php');
     $session = new Session();
 
+    // Check if there is any form submissions.
+    if(isset($_POST['sumbitted'])) {
+        header("Location: ". $_SERVER['REQUEST_URI']);
+    }
+
     // Check if user already login:
     if (! empty($session->name) && empty($_POST['logout'])){
         echo "<span class = 'greet'> Welcome, $session->name! </span>";
@@ -28,7 +33,7 @@
         if (in_array("user", $user->rights)) {
             echo "<script>
                     window.onload = function(){
-                        document.getElementById(\"account\").insertAdjacentHTML(\"afterend\", \"<a href='account.php'>Account</a>\");
+                        document.getElementById(\"shop\").insertAdjacentHTML(\"afterend\", \"<a href='cart.php'>Cart</a>\");
                     }
                  </script>";
         }
