@@ -14,11 +14,24 @@ body {
 }
 /* ***** MENU ***** */
 #menu {
+    padding-top: 10px;
+    width: 100%;
     min-height: 60px;
-    max-height: 180px;
+    height: auto;
     font-size: 1.25em;
     text-align: left;
     background-color: white;
+    overflow: hidden;
+    clear: both;
+}
+nav {
+    padding-top: 10px;
+    width: auto;
+    max-width: 50%;
+    margin: auto;
+    margin-left: 10px;
+    top: 50%;
+    float: left;
     clear: both;
 }
 
@@ -27,7 +40,6 @@ nav a {
     color: green;
     padding: 20px 10px 20px 10px;
     margin: 0;
-    float: left;
 }
 
 nav a:hover {
@@ -37,24 +49,29 @@ nav a:hover {
 
 #searchResult {
     color: green;
+    background-color: white;
     text-align: center;
+    padding-bottom: 10px;
+    margin: auto;
     font-size: 0.75em !important;
-    width: 30%;
-    padding: 20px 4px 20px 4px;
+    min-width: 30%;
+    width: auto;
+    max-width: 50%;
+    height: auto;
     position: relative;
-    float: left;
+    clear: both;
 }
 
 #searchBox
 {
     text-align: center;
-    margin: 12px 0 12px 0;
-    right: 0;
-    width: 25%;
+    margin-right: 10px;
+    padding: 0;
     min-width: 200px;
+    width: 30%;
+    height: auto;
     position: relative;
     float: right;
-    z-index: 0;
 }
 
 #searchBox #search {
@@ -79,7 +96,6 @@ nav a:hover {
     text-shadow: .3px .3px #04B45F;
     position: relative;
     display: inline-block;
-    float: center;
 }
 
 /* ***** FORM ***** */

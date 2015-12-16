@@ -1,12 +1,13 @@
 <?php
     require_once("controller/shareController.php");
-    require_once("controller/shopController.php");
+    require_once("controller/loginController.php");
     require_once("controller/messageController.php");
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Log-In Page</title>
+    <title>Dashboard</title>
     <meta charset = "utf-8">
     <meta name = "description" content = "EduGarden: A website for garden and horticulutral education organization to hold a online store.">
     <meta name = "author" content = "Amy Yuen Ying Chan">
@@ -19,7 +20,7 @@
     <script src = 'jquery.js'></script>
     <script>
     $(document).ready(function() {
-
+            $(".inputForms").insertAfter("#menu");
             $("fieldset").insertAfter("#menu");
             $("table").insertAfter("#menu");
             $("span.logMsg").insertBefore("input[name=logout]");
@@ -49,8 +50,8 @@
                 });
             }
         })
-
     })
+
     </script>
 <head>
 

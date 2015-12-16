@@ -26,7 +26,7 @@ class inventoryView {
     }
 
     public function addBn() {
-        echo "<form action = " . htmlspecialchars($_SERVER['PHP_SELF']) . " method='post' class='inputForms' >
+        echo "<form action = " . htmlspecialchars($_SERVER['REQUEST_URI']) . " method='post' class='inputForms' >
                 <p><span>SKU: <input type='text' id='enterPid' name='enterPid'></span>
                 <span>Amount of new inventory: <input type='text' id='enterQty' name='enterQty'></span>
                 <input type='hidden' name='sumbitted' value='1' />

@@ -3,6 +3,7 @@
     require_once("controller/loginController.php");
     require_once("controller/messageController.php");
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,7 +62,7 @@
             <a href="login.php">Log In</a>
         </nav>
         <div id="searchResult"></div>
-        <div id="searchBox"><form action = <?php echo htmlspecialchars($_SERVER["REQUEST_URI"]); ?> method="get">
+        <div id="searchBox"><form action = <?php echo htmlspecialchars($_SERVER["REQUEST_URI"]) ?> method="get">
             <input type="text" id="search">
             <input type="submit" id="submit" class="sub-bn" value="Search" onclick="searchTerm(); return false;">
         </form></div>

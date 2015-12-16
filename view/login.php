@@ -14,7 +14,7 @@
                     <form action = " . htmlspecialchars($_SERVER["REQUEST_URI"]) . " method='post'>
                         Name: <input type='text' name='userName'required/><br />
                         Password: <input type='password' name='passWd' required/><br />
-                        <input type='submit' name='login' class='sub-bn' value='Login' />
+                        <input type='submit' id='logging' name='login' class='sub-bn' value='Login'/>
                     </form>
                 </fieldset>";
             echo $this->form;

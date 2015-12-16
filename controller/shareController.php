@@ -10,7 +10,7 @@
     $session = new Session();
 
     // Check if there is any form submissions.
-    if(isset($_POST['sumbitted'])) {
+    if(isset($_POST['sumbitted']) || isset($_POST['login']) || isset($_POST['logout'])) {
         header("Location: ". $_SERVER['REQUEST_URI']);
     }
 
@@ -27,6 +27,8 @@
             echo "<script>
                     window.onload = function(){
                         document.getElementById(\"shop\").insertAdjacentHTML(\"afterend\", \"<a href='inventories.php'>Inventories</a>\");
+                        document.getElementById(\"shop\").insertAdjacentHTML(\"afterend\", \"<a href='cart.php'>Cart</a>\");
+                        document.getElementById(\"dashboard\").innerHTML = \"Dashboard\";
                     }
                  </script>";
         }
@@ -34,6 +36,7 @@
             echo "<script>
                     window.onload = function(){
                         document.getElementById(\"shop\").insertAdjacentHTML(\"afterend\", \"<a href='cart.php'>Cart</a>\");
+                        document.getElementById(\"dashboard\").innerHTML = \"Dashboard\";
                     }
                  </script>";
         }
@@ -42,8 +45,6 @@
     // Confirm if there is a search submission, if so, begin searching:
     if (! empty($_GET['q'])) {
         require_once('model/search.php');
-        $search = new Search($_GET['q'], $session);
-        $search->output();
     }
 
 ?>

@@ -7,11 +7,6 @@
 
     // Confirm if user already login
     if (! empty($session->name)) {
-        require_once('model/user.php');
-        $user = new User($session);
-        $sn = $session->name;
-        $user->logged($sn);
-
         //Display cart content.
         require_once('model/cart.php');
         require_once('view/cart.php');

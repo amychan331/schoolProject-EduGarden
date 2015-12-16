@@ -27,7 +27,7 @@ class cartView {
     }
 
     public function addBn() {
-        echo "<form action='" . htmlspecialchars($_SERVER['PHP_SELF']) . "' id='cartPanel' method='post'>";
+        echo "<form id='cartPanel' method='post' action='" . htmlspecialchars($_SERVER['REQUEST_URI']) . "'>";
         echo "<table>";
         echo "<tr><th>SKU</th><th>Name</th><th>Size</th><th>Price</th><th>Quantity</th><tr/>";
         foreach ($this->model->display() as $row) {

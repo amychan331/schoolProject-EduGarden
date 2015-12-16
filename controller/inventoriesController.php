@@ -7,11 +7,6 @@
 
     // Confirm if user already login
     if (! empty($session->name) && in_array("admin", $user->rights)) {
-        require_once('model/user.php');
-        $user = new User($session);
-        $sn = $session->name;
-        $user->logged($sn);
-
         // Display inventory panel
         require_once('model/inventory.php');
         $inventory = new Inventory($session);
