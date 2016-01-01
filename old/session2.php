@@ -1,10 +1,10 @@
+
 <?php
 // Ensure source code is readable:
 if (isset($_GET['source'])) {
 	highlight_file($_SERVER['SCRIPT_FILENAME']);
 	exit;
 }
-
 // A Session class:
 class Session {
 	public $db;
@@ -14,7 +14,6 @@ class Session {
 	private $max;
 	private $current;
 	private $emptyHistory;
-
 	public function __construct() {
 		session_set_save_handler(
 			array($this, 'open'), 
@@ -24,28 +23,27 @@ class Session {
 			array($this, 'destroy'),
 			array($this, 'gc')
 		);
+		register_shutdown_function('session_write_close');
 		ini_set('session.gc_maxlifetime', 900);
 		$this->maxlifetime = ini_get('session.gc_maxlifetime');
+		ini_set('session.save_path', __DIR__ . '/sessions');
+		echo session_save_path();
 		session_set_cookie_params($this->maxlifetime);
 		session_start();
 	}
-
 	function open() {
 		require_once('/students/achan123/cs130b/private/dbvar.inc');
 		$this->db = new mysqli($dbhost, $dbuser, $dbpass, $dbdatabase) or die("Database not connecting.");
 		unset($dbuser, $dbpass);
 		return true;
 	}
-
 	function close() {
+		var_dump($_SESSION);
+
 		$this->db->close();
 		return true;
 	}
-
 	function read($sid) {
-		// Make sure that any expired login sesion are already garbage collected.
-		$this->gc($this->maxlifetime);
-		// Make sure that user is not already in a valid login session. If so, close database and return false.
 		$this->result = $this->db->prepare("SELECT data FROM session_holder WHERE id = ?");
 		$this->result->bind_param("s", $sid);
 		$this->result->execute();
@@ -53,17 +51,9 @@ class Session {
 		$this->result->bind_result($this->name);
 		if ($this->result->num_rows > 0) {
 			$this->result->fetch();
-			if (isset($_POST["login"])) {
-				echo "<span class = 'errMsg'><br />You are already logged in as user " . $this->name . ". Please log out first if want to log in as different user.</span>";
-				return false;
-			}
-		} else if (isset($_POST["logout"])) {
-			echo "<span class = 'errMsg'><br />Unable to logout, since you are not login in the first place.</span>";
-			return false;
 		}
 		return true;
 	}
-
 	function write($sid, $data) {
 		if ($data) {	
 			// unserialize $_SESSION to get name datas, then reserialized it back.
@@ -83,13 +73,11 @@ class Session {
 			$this->result->close();
 			return true;
 		}
-
 	}	
-
 	function destroy($sid) {
 		$this->emptyHistory = $this->db->query("SELECT * FROM session_holder WHERE id = '${sid}'")->num_rows;
 		if ($this->emptyHistory === 0) {
-			$GLOBAL['errMsg'] = "Please log in first.";
+			echo "<span class = 'errMsg'>Please log in first.</span>";
 		} else {
 			$this->result = $this->db->prepare("DELETE FROM session_holder WHERE id = ?");
 			$this->result->bind_param("s", $sid);
@@ -99,7 +87,6 @@ class Session {
 		}
 		return true;
 	}
-
 	function gc($max) {
 		$old = time() - $max;
 		$this->result = $this->db->prepare("DELETE FROM session_holder WHERE time < ?");

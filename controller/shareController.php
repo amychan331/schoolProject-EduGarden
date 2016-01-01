@@ -9,9 +9,17 @@
     require_once('model/session.php');
     $session = new Session();
 
+    ob_start();
     // Check if there is any form submissions.
-    if(isset($_POST['sumbitted']) || isset($_POST['login']) || isset($_POST['logout'])) {
+    if(isset($_POST['sumbitted']) || isset($_POST['logout']) ) {
         header("Location: ". $_SERVER['REQUEST_URI']);
+    }
+
+    function checkLog() {
+        // If the flag of $_GET['logged'] exist, load a new header so all changes appears.
+        if(isset($_POST['login']) && isset($_GET['logged'])) {
+            header("Location: ". $_SERVER['REQUEST_URI']);
+        }
     }
 
     // Check if user already login:

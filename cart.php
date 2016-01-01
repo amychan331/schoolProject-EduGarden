@@ -1,7 +1,24 @@
 <?php
+if (isset($_POST['submitQty'])) {
+    require_once('model/session.php');
+    $session = new Session();
+    require_once('model/user.php');
+    $user = new User($session);
+    $user->logged($session->name);
+    $user->getRight();
+    require_once("controller/cartController.php");
+    if (isset($boxMsg)) {
+        foreach($boxMsg as $m) {
+            $logMsg[] = array($m);
+            echo json_encode($logMsg);
+        }
+    }
+    die;
+} else {
     require_once("controller/shareController.php");
     require_once("controller/cartController.php");
     require_once("controller/messageController.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -67,9 +84,35 @@
             }
             $bn.parent().find("input").val(newVal);
         })
+
+        // For cart's new quantity submissions.
+        $("#cartPanel").submit(function(e) {
+            e.preventDefault();
+            var $form = $(this),
+                f_pid = $form.find("input[name='productId']").val(),
+                f_qty = $form.find("input[name='cartQtyBox']").val();
+            
+            var posting = $.post($form.attr("action"), { submitQty: true, productId: f_pid, cartQtyBox: f_qty }, null, "json");
+            posting.done(function (postData) { //postData does the submission & gets the resulted boxMsg
+                var getting = $.get("model/cartPanel.php", { submitQty: true });
+                getting.done(function (getData) { //getData receives the newest resulted quality by loading a new page.
+                    var g_pid = getData.pid,
+                    g_qty = getData.qty;
+                    $("input#"+g_pid).parent().find("#cartQtyBox").val(g_qty);
+                });
+                if ($(".boxMsg")){ //Prevents duplicate boxMsg with new submissions.
+                    $(".boxMsg").remove(); 
+                }
+                $("#cartPanel").after("<table class = 'boxMsg'><td><p class='logMsg'></p></td></table>");
+                $.each(postData, function(k,v) { //In case there are more than one messages.
+                    $("table.boxMsg p").append(v);
+                });
+            });
+        });
+
     })
     </script>
-<head>
+</head>
 
 <body>
     <div id="menu">

@@ -35,14 +35,18 @@ class Cart extends userControl {
         $this->cartStatus->store_result();
         $this->cartStatus->bind_result($cid);
         $this->cartStatus->fetch();
-        if ($cid) {
+        if (isset($cid)) {
             $this->cid = $cid;
+            return 1;
+        } else {
+            return $boxMsg[] = "Error. Unable to find user cart";
         }
     }
 
     public function getCid() {
-        $this->setCid();
-        return $this->cid;
+        if ($this->setCid() === 1) {
+            return $this->cid;
+        }
     }
 
     public function input($item, $quantity) {
@@ -80,16 +84,16 @@ class Cart extends userControl {
         $this->inventory = $this->session->db->prepare("UPDATE inventory SET available = available - ?, hold = hold + ? WHERE productId = ?");
         $this->inventory->bind_param("iii", $this->diff, $this->diff, $this->pid);
         if ($this->inventory->execute()) {
-            $this->cart = $this->session->db->prepare("UPDATE carts SET quantity = ? WHERE cartId = ? AND productId =?");
+            $this->cart = $this->session->db->prepare("UPDATE carts SET quantity = ? WHERE cartId = ? AND productId = ?");
             $this->cart->bind_param("iii", $this->qty, $this->cid, $this->pid);
             $this->cart->execute();
             if ($this->diff > 0) {
-                return "You added "  . $this->diff . " of item with SKU " . $this->pid . " in your cart.";
+                return $boxMsg[] = "You added "  . $this->diff . " of item with SKU " . $this->pid . " in your cart.";
             } else {
-                return "You reduce "  . abs($this->diff) . " of item with SKU " . $this->pid . " in your cart.";
+                return $boxMsg[] = "You reduce "  . abs($this->diff) . " of item with SKU " . $this->pid . " in your cart.";
             }
         } else {
-            return "Unable to change quantity of item with SKU " . $this->pid . ". <br /> Either you have requested a negative amount of hold or the item is out.";
+            return $boxMsg[] = "Unable to change quantity of item with SKU " . $this->pid . ". <br /> Either you have requested a negative amount of hold or the item is out.";
         }
 
     }
@@ -101,7 +105,7 @@ class Cart extends userControl {
         $this->cart = $this->session->db->prepare("DELETE FROM carts WHERE cartId = ? AND productId =?");
         $this->cart->bind_param("iii", $this->cid, $this->pid);
         $this->cart->execute();
-        return "You removed item with SKU " . $this->pid . " from your cart.";
+        return $boxMsg[] = "You removed item with SKU " . $this->pid . " from your cart.";
     }
 
     public function getDifferences() {
@@ -111,7 +115,7 @@ class Cart extends userControl {
         $this->oldCart->bind_result($this->old);
         $this->oldCart->fetch();
         $this->oldCart->close();
-        
+
         $this->diff = $this->qty - $this->old;
         if ($this->diff !== 0) {
             return TRUE;

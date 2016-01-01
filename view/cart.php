@@ -27,7 +27,7 @@ class cartView {
     }
 
     public function addBn() {
-        echo "<form id='cartPanel' method='post' action='" . htmlspecialchars($_SERVER['REQUEST_URI']) . "'>";
+        echo "<form id='cartPanel' action='" . htmlspecialchars($_SERVER['REQUEST_URI']) . "'>";
         echo "<table>";
         echo "<tr><th>SKU</th><th>Name</th><th>Size</th><th>Price</th><th>Quantity</th><tr/>";
         foreach ($this->model->display() as $row) {
@@ -35,7 +35,7 @@ class cartView {
             $i = 1;
             foreach ($row as $cell) {
                 if ($i === 1) {
-                    echo "<input type='hidden' name='productId' value='" . $cell . "'>";
+                    echo "<input type='hidden' name='productId' id='" . $cell . "' value='" . $cell . "'>";
                     echo "<td>" . $cell ."</td>";
                     $i++;
                 } else if ($i <= 4) {
@@ -43,7 +43,7 @@ class cartView {
                     $i++;
                 } else {
                     echo "<td><button type='button' class='cartQtyBn' data-type='plus' value='+'><i class='fa fa-plus fa-sm'></i></button>";
-                    echo "<input type='text' name='cartQtyBox' size='3' value='" . floatval($cell) . "'>";
+                    echo "<input type='text' id='cartQtyBox' name='cartQtyBox' size='3' value='" . floatval($cell) . "'>";
                     echo "<button type='button' class='cartQtyBn' data-type='minus' value='-'><i class='fa fa-minus fa-sm'></i></button></td>";
                     $i = 0;
                 }

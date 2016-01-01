@@ -11,25 +11,28 @@
         require_once('model/cart.php');
         require_once('view/cart.php');
         $cart = new Cart($user->userName, $session);
-        if ($cart->getCid()) {
-            $cartPanel = new cartView($cart);
-            $cartPanel->addBn();
-        } else {
-            $boxMsg[] = "You have no items in your carts.";
+        if (! $_POST) {
+            if ($cart->getCid()) {
+                $cartPanel = new cartView($cart);
+                $cartPanel->addBn();
+            } else {
+                return $boxMsg[] = "You have no items in your carts.";
+            }
         }
     } else {
-        $boxMsg[] = "Please login first.";
+        return $boxMsg[] = "Please login first.";
     }
 
     // Check if there is user input.
     if (isset($_POST["submitQty"])) {
+        $cart->getCid();
         $cart->input($_POST["productId"], $_POST["cartQtyBox"]);
-        if (! $cart->getDifferences()) {
-            $boxMsg[] = "Please change the amount before clicking on the submit button.";
+        if ($cart->getDifferences() === false) {
+            return $boxMsg[] = "Please change the amount before clicking on the submit button.";
         } else if ($_POST["cartQtyBox"] === 0) {
-            $boxMsg[] = $cart->delete();
-        } else if ($_POST["cartQtyBox"] !== $cart->old) {
-            $boxMsg[] = $cart->add();
+            return $boxMsg[] = $cart->delete(); // deletes the sku from cart completely.
+        } else {
+            return $boxMsg[] = $cart->add(); // while the name is "add", it really indicate changes to amount that don't delete sku from cart.
         } 
     }
 ?>
