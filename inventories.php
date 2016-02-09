@@ -1,7 +1,5 @@
 <?php
     require_once("controller/shareController.php");
-    require_once("controller/inventoriesController.php");
-    require_once("controller/messageController.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,10 +17,6 @@
     <script src = 'jquery.js'></script>
     <script>
         $(document).ready(function() {
-
-            $(".inputForms").insertAfter("#menu");
-            $("fieldset").insertAfter("#menu");
-            $("table").insertAfter("#menu");
             $("span.logMsg").insertBefore("input[name=logout]");
             $("span.errMsg").insertAfter("input[name=login]");
 
@@ -53,6 +47,7 @@
 
         })
     </script>
+    <noscript><p id="jsMsg">This site strive its best to accomedate all users, but turning on Javascript will enable the best experience.</p></noscript>
 <head>
 
 <body>
@@ -72,3 +67,7 @@
     </div>
 </body>
 </html>
+<?php
+    require_once("controller/inventoriesController.php");
+    require_once("controller/messageController.php");
+?>

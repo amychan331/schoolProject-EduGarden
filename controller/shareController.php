@@ -1,15 +1,8 @@
 <?php 
-    // Ensure source code is readable:
-    if (isset($_GET['source'])) {
-        highlight_file($_SERVER['SCRIPT_FILENAME']);
-	    exit;
-    }
-
-    // Begin session:
+    ob_start();
     require_once('model/session.php');
     $session = new Session();
 
-    ob_start();
     // Check if there is any form submissions.
     if(isset($_POST['sumbitted']) || isset($_POST['logout']) ) {
         header("Location: ". $_SERVER['REQUEST_URI']);
@@ -24,7 +17,7 @@
 
     // Check if user already login:
     if (! empty($session->name) && empty($_POST['logout'])){
-        echo "<span class = 'greet'> Welcome, $session->name! </span>";
+        echo "<span id='greet'> Welcome, $session->name! </span>";
 
         // Check user permission
         require_once('model/user.php');

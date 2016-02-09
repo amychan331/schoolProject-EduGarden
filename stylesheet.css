@@ -1,149 +1,146 @@
-/* ***** BODY ***** */
-body {
-    color: #0B3B17;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    background-color: #EFFBF2;
-    margin: 0;
-}
-/* ***** HEADER ***** */
-.greet {
+/* ***** TEXT & COLOR ***** */
+a {
     color: green;
-    padding: 5px;
-    font-size: 0.857em;
-    font-style: italic;
-}
-/* ***** MENU ***** */
-#menu {
-    padding-top: 10px;
-    width: 100%;
-    min-height: 60px;
-    height: auto;
-    font-size: 1.25em;
-    text-align: left;
-    background-color: white;
-    overflow: hidden;
-    clear: both;
-}
-nav {
-    padding-top: 10px;
-    width: auto;
-    max-width: 50%;
-    margin: auto;
-    margin-left: 10px;
-    top: 50%;
-    float: left;
-    clear: both;
-}
-
-nav a {
+    margin: 0;
     text-decoration: none;
-    color: green;
-    padding: 20px 10px 20px 10px;
-    margin: 0;
 }
 
-nav a:hover {
+a:hover {
     color: #585858;
     text-decoration: underline;
 }
 
-#searchResult {
-    color: green;
+
+/* ***** BODY ***** */
+body {
+    background-color: #EFFBF2;
+    color: #0B3B17;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    margin: 0;
+}
+
+h2, h4 {
+    margin: 0;
+    padding: 0;
+}
+
+/* ***** MENU ***** */
+#menu {
     background-color: white;
-    text-align: center;
-    padding-bottom: 10px;
-    margin: auto;
-    font-size: 0.75em !important;
-    min-width: 30%;
-    width: auto;
-    max-width: 50%;
-    height: auto;
-    position: relative;
     clear: both;
+    font-size: 1.25em;
+    height: auto;
+    margin-bottom: 10px;
+    min-height: 60px;
+    overflow: hidden;
+    padding-top: 10px;
+    text-align: left;
+    width: 100%;
+}
+nav {
+    clear: both;
+    float: left;
+    margin-left: 10px;
+    margin: auto;
+    max-width: 50%;
+    padding-top: 10px;
+    top: 50%;
+    width: auto;
+}
+nav a {
+    padding: 20px 10px 20px 10px;
+}
+
+#searchResult {
+    background-color: white;
+    clear: both;
+    color: green;
+    font-size: 0.75em !important;
+    height: auto;
+    margin: auto;
+    max-width: 50%;
+    min-width: 30%;
+    padding-bottom: 10px;
+    position: relative;
+    text-align: center;
+    width: auto;
 }
 
 #searchBox
 {
-    text-align: center;
-    margin-right: 10px;
-    padding: 0;
-    min-width: 200px;
-    width: 30%;
-    height: auto;
-    position: relative;
     float: right;
+    height: auto;
+    margin-right: 10px;
+    min-width: 200px;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    width: 30%;
 }
 
 #searchBox #search {
     background: #f1f1f1;
-    margin: auto;
-    padding: 0px 6px;
-    height: 30px;
-    width: 22%;
-    min-width: 150px;
-    border: 1px solid #a4c3ca;
     border-radius: 4px;
+    border: 1px solid #A3C9BD;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);
     font: normal 0.75em !important;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);            
+    height: 30px;
+    margin: auto;
+    min-width: 150px;
+    padding: 0px 6px;
+    width: 22%;
 }
 #searchBox .sub-bn {
-    margin: 3px;
-    padding: 5px;
     background-color: #6cbb6b;
     color: #ffffff;
-    font-weight: bold;
-    font-size: 0.75em !important;
-    text-shadow: .3px .3px #04B45F;
-    position: relative;
     display: inline-block;
+    font-size: 0.75em !important;
+    font-weight: bold;
+    margin: 3px;
+    padding: 5px;
+    position: relative;
+    text-shadow: .3px .3px #04B45F;
 }
 
 /* ***** FORM ***** */
 fieldset {
-    padding: 5px; 
-    width: 50%;
-    max-width: 300px;
-    margin: auto;
-    margin-top: 20px;
-    display: block;
-    position: relative;
     clear: both;
+    display: block;
+    margin-top: 20px;
+    margin: auto;
+    max-width: 300px;
+    padding: 5px;
+    position: relative;
+    width: 50%;
 }
 fieldset legend {
     color: green;
     font-weight: bold;
 }
 fieldset form {
-    padding: 0;
-    margin: 0;
     color: #424242;
+    margin: 0;
+    padding: 0;
 }
 fieldset input {
-    margin-top: 5px;
-    margin-right: 5px;
-    min-height: 1.125em;
     color: #0A2A12;
-}
-
-input.sub-bn {
-    background-color: green;
-    color: #ffffff;
-    font-size: 1.0em;
-    text-shadow: .3px .3px #04B45F;
+    margin-right: 5px;
+    margin-top: 5px;
+    min-height: 1.125em;
 }
 .inputForms{
     margin: 0 5px;
     padding: 0 5px;
 }
 .cartQtyBn {
-    border: 2px solid grey;
-    border-radius: 2px;
     background-color: #ffffff;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1); 
+    border-radius: 2px;
+    border: 2px solid grey;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);
 }
 i {
     background-color: #ffffff;
-    margin: 3px 0 1px 0;
+    margin: 2px 0 .5px 0;
 }
 #submitQty {
     float: right;
@@ -151,41 +148,134 @@ i {
 
 /* ***** TABLES ***** */
 table {
-    color: green;
     background-color: white;
-    border: 2px double gray;
     border-collapse: collapse;
-    table-layout: auto;
-    position: relative;
+    border: 2px double gray;
+    color: green;
     float: center;
     margin: 20px auto 20px auto;
+    position: relative;
+    table-layout: auto;
 }
 tr {
     text-align: left;
 }
 td {
-    padding: 5px;
     border: 2px ridge gray;
+    padding: 5px;
 }
 th {
-    color: #0B3B17;
-    text-align: center;
-    padding: 5px;
     border: 2px ridge gray;
+    color: #0B3B17;
+    padding: 5px;
+    text-align: center;
 }
 
-/* ***** buttons ***** */
-.sub-bn 
-{       
-    padding: 3px;
-    border-radius: 4px;
+/* ***** SHOP ***** */
+/*individual page view*/
+#container {
+    clear: all;
+    margin-left: auto ;
+    margin-right: auto ;
+    overflow: none;
+    padding: 10px;
+    width: 80%;
+}
+#container img {
+    float: left;
+    margin: 0 20px 20px 0;
+    position: relative;
+}
+#description {
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
-    border: .2px solid #04B45F;
+    border-radius: 4px;
+    border: 2px dotted green;
+    float: left;
+    max-width: 75%;
+    padding: 10px;
+}
+#purchaseForm {
+    margin-top: 10px;
+    margin-bottom: 0;
+    padding: 0;
+    vertical-align: top;
+}
+/* select box styling code modified from an awesome tutorial by @bavotasan  at http://bavotasan.com/2011/style-select-box-using-only-css/ */
+#selection {
+    background: url('image/chevron_down.png') no-repeat right white;
+    display: inline-block;
+    float: left;
+    height: 1.7em;
+    overflow: hidden;
+    width: 120px;
+}
+#selection select {
+    -moz-border: 0;
+    -webkit-border: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    -webkit-appearance: none; /* for chrome */
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    color: green;
+    font-weight: bold;
+    height: 1.8em;
+    line-height: 1; /* for Chrome and Safari */
+    padding: 3px 0 0 5px; /* so it's not flush against the edge in Safari*/
+    width: 150px;
+}
+
+/*category view*/
+#tileContainer {
+    margin: auto;
+    padding-left: 10px;
+}
+.tileSpace {
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    border: 2px dotted green;
+    float: left;
+    height: 180px;
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    width: 180px;
+}
+
+.tileSpace p {
+    margin: 2px;
+}
+.tileSpace a:hover {
+    text-decoration: none;
+}
+
+/* ***** INPUT & BUTTONS ***** */
+.inputBox {
+    -moz-border: 1px solid #A3C9BD;
+    -webkit-border: 1px solid #A3C9BD;
+    background: white;
+    border: 1px solid #A3C9BD;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);
+    height: 1.75em;
+    padding: 2px;
+}
+
+.sub-bn {
+    -moz-border: .4px solid #04B45F;
+    -webkit-border: .4px solid #04B45F;       
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    background-color: green;
+    border: .4px solid #04B45F;
+    border-radius: 4px;
+    color: #ffffff;
     cursor: pointer;
-    box-shadow: 0 .2px 0 rgba(255, 255, 255, 0.5) inset;
-    -moz-box-shadow: 0 .2px 0 rgba(255, 255, 255, 0.5) inset;
-    -webkit-box-shadow: 0 .2px 0 rgba(255, 255, 255, 0.5) inset;
+    font-size: 1em;
+    height: 1.7em;
+    padding: 2px 5px 2px 5px;
 }
 
 .sub-bn:hover {       
@@ -195,8 +285,8 @@ th {
 
 .sub-bn:active {       
     background: #95d788;
-    outline: none;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;        
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+    outline: none; 
 }
 
 .sub-bn::-moz-focus-inner {
@@ -204,20 +294,35 @@ th {
 }
 
 /* ***** MESSAGES ***** */
+#greet {
+    color: green;
+    font-size: 0.857em;
+    font-weight: bold;
+    padding: 5px;
+}
+#jsMsg {
+    background-color: #0B3B0B;
+    color: white;
+    font-size: 0.857em;
+    margin: auto;
+    padding: 5px;
+    text-align: center;
+    text-decoration: bold;
+}
 .boxMsg{
     text-align: center;
 }
 .boxMsg .sub-bn {
-    text-align: center;
     display: block;
     float: center;
     margin: auto;
+    text-align: center;
 }
 .logMsg {
     color: gray;
+    display: block;
     font-style: italic;
     margin: 5px 0 5px 0;
-    display: block;
 }
 .errMsg {
     color: red;

@@ -1,10 +1,4 @@
 <?php 
-    // Ensure source code is readable:
-    if (isset($_GET['source'])) {
-        highlight_file($_SERVER['SCRIPT_FILENAME']);
-	    exit;
-    }
-
     // Check to make sure user haven't already login.
     if (! empty($session->name) && empty($_POST['logout'])){
         $boxMsg[] = "Welcome " . $user->userName . ", you have " . implode(" and ", $user->getRight()) . " access.</span>

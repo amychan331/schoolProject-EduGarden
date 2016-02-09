@@ -1,28 +1,22 @@
 <?php 
-// Ensure source code is readable:
-    if (isset($_GET['source'])) {
-        highlight_file($_SERVER['SCRIPT_FILENAME']);
-          exit;
-    }
-
     require_once('siteInfo.php');
 
     class Search implements siteInfo {
         private $term;
-        private $session;
+        private $db;
         private $result;
         private $search;
         protected $display = array();
         private $pN;
         private $sN;
 
-        public function __construct($term, $session) {
+        public function __construct($term, $db) {
             $this->term = "%{$term}%";
-            $this->session = $session;
+            $this->db = $db;
         }
 
         public function getContent() {
-            $this->result = $this->session->db->prepare("SELECT productId, productName, sciName FROM products WHERE productName LIKE ? or sciName LIKE ?");
+            $this->result = $this->db->prepare("SELECT productId, productName, sciName FROM products WHERE productName LIKE ? or sciName LIKE ?");
             $this->result->bind_param("ss", $this->term, $this->term);
             $this->result->execute();
             $this->result->bind_result($pid, $pN, $sN);
@@ -43,10 +37,12 @@
         }
     }
 
-    require_once('session.php');
-    $session = new Session();
     if (! empty($_GET['q'])) {
-        $search = new Search($_GET['q'], $session);
+        require_once('../../private/dbvar.inc');
+        $db = new mysqli($dbhost, $dbuser, $dbpass, $dbdatabase) or die("Database not connecting.");
+        unset($dbuser, $dbpass);
+        $search = new Search($_GET['q'], $db);
         $search->setContent();
+        $db->close();
     }
 ?>

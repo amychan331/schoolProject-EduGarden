@@ -16,8 +16,6 @@ if (isset($_POST['submitQty'])) {
     die;
 } else {
     require_once("controller/shareController.php");
-    require_once("controller/cartController.php");
-    require_once("controller/messageController.php");
 }
 ?>
 <!DOCTYPE html>
@@ -112,6 +110,7 @@ if (isset($_POST['submitQty'])) {
 
     })
     </script>
+    <noscript><p id="jsMsg">This site strive its best to accomedate all users, but turning on Javascript will enable the best experience.</p></noscript>
 </head>
 
 <body>
@@ -131,3 +130,7 @@ if (isset($_POST['submitQty'])) {
     </div>
 </body>
 </html>
+<?php
+    require_once("controller/cartController.php");
+    require_once("controller/messageController.php");
+?>

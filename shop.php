@@ -1,7 +1,5 @@
 <?php
     require_once("controller/shareController.php");
-    require_once("controller/shopController.php");
-    require_once("controller/messageController.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,9 +47,9 @@
                 });
             }
         })
-
     })
     </script>
+    <noscript><p id="jsMsg">This site strive its best to accomedate all users, but turning on Javascript will enable the best experience.</span></noscript>
 <head>
 
 <body>
@@ -71,3 +69,7 @@
     </div>
 </body>
 </html>
+<?php
+    require_once("controller/shopController.php");
+    require_once("controller/messageController.php");
+?>

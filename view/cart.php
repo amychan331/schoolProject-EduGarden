@@ -43,7 +43,7 @@ class cartView {
                     $i++;
                 } else {
                     echo "<td><button type='button' class='cartQtyBn' data-type='plus' value='+'><i class='fa fa-plus fa-sm'></i></button>";
-                    echo "<input type='text' id='cartQtyBox' name='cartQtyBox' size='3' value='" . floatval($cell) . "'>";
+                    echo "<input type='text' id='cartQtyBox' class='inputBox' name='cartQtyBox' size='3' value='" . floatval($cell) . "'>";
                     echo "<button type='button' class='cartQtyBn' data-type='minus' value='-'><i class='fa fa-minus fa-sm'></i></button></td>";
                     $i = 0;
                 }

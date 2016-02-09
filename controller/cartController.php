@@ -1,10 +1,4 @@
 <?php 
-    // Ensure source code is readable:
-    if (isset($_GET['source'])) {
-        highlight_file($_SERVER['SCRIPT_FILENAME']);
-	    exit;
-    }
-
     // Confirm if user already login
     if (! empty($session->name)) {
         //Display cart content.

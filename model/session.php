@@ -1,10 +1,6 @@
 
 <?php
-// Ensure source code is readable:
-if (isset($_GET['source'])) {
-	highlight_file($_SERVER['SCRIPT_FILENAME']);
-	exit;
-}
+
 // A Session class:
 class Session {
 	public $db;
@@ -14,6 +10,7 @@ class Session {
 	private $max;
 	private $current;
 	private $emptyHistory;
+
 	public function __construct() {
 		session_set_save_handler(
 			array($this, 'open'), 
@@ -23,14 +20,13 @@ class Session {
 			array($this, 'destroy'),
 			array($this, 'gc')
 		);
-		register_shutdown_function('session_write_close');
 		ini_set('session.gc_maxlifetime', 900);
 		$this->maxlifetime = ini_get('session.gc_maxlifetime');
 		session_set_cookie_params($this->maxlifetime);
 		session_start();
 	}
 	function open() {
-		require_once('/students/achan123/cs130b/private/dbvar.inc');
+		require_once('../private/dbvar.inc');
 		$this->db = new mysqli($dbhost, $dbuser, $dbpass, $dbdatabase) or die("Database not connecting.");
 		unset($dbuser, $dbpass);
 		return true;

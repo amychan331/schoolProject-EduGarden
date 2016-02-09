@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>EduGarden: Home</title>
+    <title>EduGarden: Registration</title>
     <meta charset = "utf-8">
     <meta name = "description" content = "EduGarden: A website for garden and horticulutral education organization to hold a online store.">
     <meta name = "author" content = "Amy Yuen Ying Chan">
@@ -17,6 +17,11 @@
     <script src = 'jquery.js'></script>
     <script>
     $(document).ready(function() {
+
+        $("span.logMsg").insertAfter("#menu");
+        $("span.errMsg").insertAfter("#menu");
+        $("table").insertAfter("#menu");
+
         // Search
         $("#submit").click(function() {
             var term = document.getElementById("search").value;
@@ -41,6 +46,7 @@
                 });
             }
         })
+
     })
     </script>
     <noscript><p id="jsMsg">This site strive its best to accomedate all users, but turning on Javascript will enable the best experience.</p></noscript>
@@ -61,9 +67,9 @@
 
         <div id="searchResult"></div>
     </div>
+    <table class = 'boxMsg'><td><p class='logMsg'>We are sorry, but currently this website does not suport user registration yet.</p></td></table>
 </body>
 </html>
 <?php
-    require_once("controller/homeController.php");
     require_once("controller/messageController.php");
 ?>

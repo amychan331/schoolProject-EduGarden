@@ -1,9 +1,4 @@
 <?php 
-// Ensure source code is readable:
-if (isset($_GET['source'])) {
-    highlight_file($_SERVER['SCRIPT_FILENAME']);
-	  exit;
-}
 
 class User {
     private $session;
