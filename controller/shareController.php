@@ -43,9 +43,4 @@
         }
     }
 
-    // Confirm if there is a search submission, if so, begin searching:
-    if (! empty($_GET['q'])) {
-        require_once('model/search.php');
-    }
-
 ?>

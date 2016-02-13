@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Log-In Page</title>
+    <title>Shop<?php if(isset($_GET['item'])) { echo ": " . preg_replace('/_/',' ', $_GET['item']); } ?></title>
     <meta charset = "utf-8">
     <meta name = "description" content = "EduGarden: A website for garden and horticulutral education organization to hold a online store.">
     <meta name = "author" content = "Amy Yuen Ying Chan">
@@ -17,14 +17,10 @@
     <script src = 'jquery.js'></script>
     <script>
     $(document).ready(function() {
-
-            $("fieldset").insertAfter("#menu");
-            $("table").insertAfter("#menu");
-            $("span.logMsg").insertBefore("input[name=logout]");
-            $("span.errMsg").insertAfter("input[name=login]");
-
+        $(".boxMsg").insertAfter("#purchaseForm");
         // Search
-        $("#submit").click(function() {
+        $("#submit").click(function(e) {
+            e.preventDefault();
             var term = document.getElementById("search").value;
             if (! term) {
                 $("div#searchResult").html("Please enter a search term first.");
@@ -49,7 +45,7 @@
         })
     })
     </script>
-    <noscript><p id="jsMsg">This site strive its best to accomedate all users, but turning on Javascript will enable the best experience.</span></noscript>
+    <noscript><p id="jsMsg">This site strive its best to accomedate all users, but turning on Javascript will enable the best experience.</p></noscript>
 <head>
 
 <body>
@@ -62,7 +58,7 @@
 
         <div id="searchBox"><form action = <?php echo htmlspecialchars($_SERVER["REQUEST_URI"]); ?> method="get">
             <input type="text" id="search">
-            <input type="submit" id="submit" class="sub-bn" value="Search" onclick="return false;">
+            <input type="submit" id="submit" class="sub-bn" value="Search">
         </form></div>
 
         <div id="searchResult"></div>

@@ -1,10 +1,5 @@
 <?php 
 // Ensure source code is readable:
-if (isset($_GET['source'])) {
-    highlight_file($_SERVER['SCRIPT_FILENAME']);
-      exit;
-}
-
 require_once('model/userControl.php');
 class Inventory extends userControl {
     private $session;

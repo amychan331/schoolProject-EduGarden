@@ -14,9 +14,11 @@
         }
 
         public function getContent() {
-            $this->result = $this->session->db->prepare("SELECT productName, sciName, price FROM products");
+            $this->result = $this->session->db->prepare("SELECT p.productId, p.productName, p.sciName, p.price FROM products p
+                WHERE p.productId IN (SELECT i.productId FROM inventory i )
+            ");
             $this->result->execute();
-            $this->result->bind_result($pN, $sN, $pz);
+            $this->result->bind_result($pid, $pN, $sN, $pz);
             while ($this->result->fetch()) {
                 if (array_key_exists($pN, $this->display)) {
                     $this->display[$pN]["price"][] = $pz;

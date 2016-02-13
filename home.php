@@ -18,7 +18,8 @@
     <script>
     $(document).ready(function() {
         // Search
-        $("#submit").click(function() {
+        $("#submit").click(function(e) {
+            e.preventDefault();
             var term = document.getElementById("search").value;
             if (! term) {
                 $("div#searchResult").html("Please enter a search term first.");
@@ -55,8 +56,8 @@
         </nav>
 
         <div id="searchBox"><form action = <?php echo htmlspecialchars($_SERVER["REQUEST_URI"]); ?> method="get">
-            <input type="text" id="search">
-            <input type="submit" id="submit" class="sub-bn" value="Search" onclick="return false;">
+            <input type="text" name="q" id="search">
+            <input type="submit" id="submit" class="sub-bn" value="Search">
         </form></div>
 
         <div id="searchResult"></div>

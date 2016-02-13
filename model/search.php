@@ -16,7 +16,7 @@
         }
 
         public function getContent() {
-            $this->result = $this->db->prepare("SELECT productId, productName, sciName FROM products WHERE productName LIKE ? or sciName LIKE ?");
+            $this->result = $this->db->prepare("SELECT productId, productName, sciName FROM `products` WHERE productName LIKE ? or sciName LIKE ?");
             $this->result->bind_param("ss", $this->term, $this->term);
             $this->result->execute();
             $this->result->bind_result($pid, $pN, $sN);

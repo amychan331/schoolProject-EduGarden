@@ -1,4 +1,5 @@
 <?php
+ob_start();
 if (isset($_POST['submitQty'])) {
     require_once('model/session.php');
     $session = new Session();
@@ -13,6 +14,7 @@ if (isset($_POST['submitQty'])) {
             echo json_encode($logMsg);
         }
     }
+    ob_end_flush();
     die;
 } else {
     require_once("controller/shareController.php");
@@ -35,7 +37,6 @@ if (isset($_POST['submitQty'])) {
     <script src = 'jquery.js'></script>
     <script>
     $(document).ready(function() {
-        
         $("span.logMsg").insertAfter("#menu");
         $("span.errMsg").insertAfter("#menu");
         $("table.boxMsg").insertAfter("#menu");

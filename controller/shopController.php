@@ -1,6 +1,6 @@
 <?php 
     // Check if there is a request to see product detail.
-    if (isset($_GET['item'])) {
+    if (isset($_GET['item']) || isset($_POST['qty'])) {
         require_once('model/productPage.php');
         require_once('view/productPage.php');
         $product = new productPage($_GET['item'], $session);
@@ -11,7 +11,9 @@
             require_once('model/purchase.php');
             $purchase = new Purchase($session);
             $purchase->getCid();
-            //$purchase->input($_POST['selection'], $_POST['qty']);
+            $purchase->input($_POST['selection'], $_POST['qty']);
+            $boxMsg = $purchase->boxMsg;
+            $errMsg = $purchase->errMsg;
         }
         $productView = new productPageView($product, $session, $purchase);
         $productView->output();

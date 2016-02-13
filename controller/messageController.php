@@ -6,6 +6,11 @@
             echo "<table class = 'boxMsg'><td><p class='logMsg'>" . $m . "</p></td></table>";
         }
     }
+    if (isset($errMsg)) {
+        foreach($errMsg as $m) {
+            echo "<table class = 'boxMsg'><td><p class='errMsg'>" . $m . "</p></td></table>";
+        }
+    }
 
     checkLog();
     ob_end_flush();
