@@ -29,4 +29,4 @@ Here are some images of what the web app currently look like:
 * On the cart page, incremental button was used:
 ![Cart Page](https://github.com/amychan331/schoolProject-EduGarden/blob/master/image/sample/cart.png)
 * The website also have a search bar that uses Ajax. The navigation bar adjusts according to search result:
-![Search Bar Working](https://github.com/amychan331/schoolProject-EduGarden/blob/master/image/sample/ajaxSearcg.png)
+![Search Bar Working](https://github.com/amychan331/schoolProject-EduGarden/blob/master/image/sample/ajaxSearch.png)
