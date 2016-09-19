@@ -1,20 +1,30 @@
-The idea of shopping cart came from my PHP Programming classes, which ask the student to select one of three type of projects types.
+#EduGarden: Learning Session. Role and Permissions. Building CRUD
 
-The idea of a garden ecommerce come from my own frustration with shopping at a gardening site that just plain sucks.
+Summary: 
+During my Advanced PHP Programming classes, I was presented three projects types to select from. I chose a shopping cart. The idea of a garden ecommerce come from my own frustration with shopping at a gardening site that, well, just plain sucks. 
 
-Class project wise, some of the basic expectations about project elements are:
+Lanuage:
+HTML, CSS, PHP, MySQL, Ajax, Javascript
+
+Class project expectation:
 * PHP MVC.
 * Maintaining a session.
 * Ability to log in as admin and as user with different user permissions.
-* Ajax.
+* User of Ajax.
 
-
-Some of the additional goals I have is:
-* Find a way to deal with tax and shipping cost, which was one of the major frustration I had with my previous gardening shop experience.  
+Additional personal goals:
 * Make it friendly for both desktop and mobile device.
 * Avoid making a design disaster. Just cause it is a class project does not means I should throw all my design lessons to the backburner.
 * Incorporate some web security techniques, particularly the ones I have been reading at OSWASP.
 * If possibly, add in features that make it accessibility-friendly.
+* Find a way to deal with tax and shipping cost, which was one of the major frustration I had with my previous gardening shop experience.  
+
+Progress:
+* Got the MVC set up.
+* Login session is successfully implemented, with a login dashboard that display cart and inventory content (if user is admin)
+* Ability to define user role, such as admin, and alter presentation depending on roles.
+* Ajax search feature
+* Cart and Inventory now contain CRUD capability for users with correct permission settings.
 
 Here are some images of what the web app currently look like:
 * To begin with, validation happens in both client and server. If JavaScript was turn off for some reason, validation will still occur:
