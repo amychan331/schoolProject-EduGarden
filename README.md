@@ -1,4 +1,4 @@
-#EduGarden: Learning Session. Role and Permissions. Building CRUD
+# EduGarden: Learning Session. Role and Permissions. Building CRUD
 
 Summary: 
 During my Advanced PHP Programming classes, I was presented three projects types to select from. I chose a shopping cart. The idea of a garden ecommerce come from my own frustration with shopping at a gardening site that, well, just plain sucks. 
